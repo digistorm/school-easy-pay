@@ -2,8 +2,12 @@
 
 namespace Digistorm\SchoolEasyPay;
 
-class Address
+use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
+
+class Address implements \JsonSerializable
 {
+    use JsonSerialize;
+    
     protected $address1;
     protected $address2;
     protected $suburb;
@@ -123,5 +127,10 @@ class Address
         $this->postcode = $postcode;
 
         return $this;
+    }
+
+    protected function jsonExclude(): array
+    {
+        return [];
     }
 }

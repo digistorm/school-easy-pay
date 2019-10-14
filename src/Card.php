@@ -2,8 +2,12 @@
 
 namespace Digistorm\SchoolEasyPay;
 
-class Card
+use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
+
+class Card implements \JsonSerializable
 {
+    use JsonSerialize;
+
     protected $cardProxy;
     protected $label;
 
@@ -43,5 +47,10 @@ class Card
         $this->label = $label;
 
         return $this;
+    }
+
+    protected function jsonExclude(): array
+    {
+        return [];
     }
 }

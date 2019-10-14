@@ -2,12 +2,15 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 
-abstract class Base
+abstract class Base implements \JsonSerializable
 {
+    use JsonSerialize;
+
     protected $client;
     protected $config;
     protected $headers;
@@ -28,17 +31,7 @@ abstract class Base
         $this->client = $client ?? new Client();
     }
 
-    public function create()
-    {
-        $endpoint = $this->config->getBaseUri() . $this->getEndpoint();
-
-        return $this->client->post($this->config->getBaseUri() . $this->getEndpoint(), [
-            RequestOptions::BODY => self::toJson(),
-            RequestOptions::HEADERS => $this->headers,
-        ]);
-    }
-
-    protected function jsonExclude()
+    protected function jsonExclude(): array
     {
         return [
             'client',
@@ -47,13 +40,14 @@ abstract class Base
         ];
     }
 
-    public function toJson()
+    public function create()
     {
-        $vars = array_filter(get_object_vars($this), function ($value, $key) {
-            return !in_array($key, $this->jsonExclude()) && $value !== null;
-        }, ARRAY_FILTER_USE_BOTH);
+        $endpoint = $this->config->getBaseUri() . $this->getEndpoint();
 
-        return json_encode($vars);
+        return $this->client->post($this->config->getBaseUri() . $this->getEndpoint(), [
+            RequestOptions::BODY => self::toJson(),
+            RequestOptions::HEADERS => $this->headers,
+        ]);
     }
 
     public function setClient(ClientInterface $client)

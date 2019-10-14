@@ -1,7 +1,7 @@
 {
     "name": "digistorm/school-easy-pay",
     "type": "library",
-    "description": ":package_description",
+    "description": "School EasyPay PHP SDK",
     "keywords": [
         "digistorm",
         "school-easy-pay"
