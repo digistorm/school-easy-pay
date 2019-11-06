@@ -42,9 +42,15 @@ abstract class Base implements \JsonSerializable
 
     public function create()
     {
-        $endpoint = $this->config->getBaseUri() . $this->getEndpoint();
-
         return $this->client->post($this->config->getBaseUri() . $this->getEndpoint(), [
+            RequestOptions::BODY => self::toJson(),
+            RequestOptions::HEADERS => $this->headers,
+        ]);
+    }
+
+    public function update()
+    {
+        return $this->client->put($this->config->getBaseUri() . $this->getEndpoint(), [
             RequestOptions::BODY => self::toJson(),
             RequestOptions::HEADERS => $this->headers,
         ]);

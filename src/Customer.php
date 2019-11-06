@@ -57,7 +57,7 @@ class Customer extends Base
 
     protected $promotionCode;
 
-    /** @var PaymentOption $paymentOption */
+    /** @var CustomerPaymentOption $paymentOption */
     protected $paymentOption;
 
     protected $paymentAmount;
