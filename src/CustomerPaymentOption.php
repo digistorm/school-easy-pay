@@ -37,7 +37,7 @@ class CustomerPaymentOption extends Base
 
     protected $paymentEndDate;
 
-    /** @var \Digistorm\SchoolEasyPay\Enums\NotificationMethod $notificationMethod */
+    /** @var NotificationMethod $notificationMethod */
     protected $notificationMethod;
 
     protected function getEndpoint()
@@ -111,10 +111,9 @@ class CustomerPaymentOption extends Base
     }
 
     /**
-     * @param mixed $paymentAmount
      * @return CustomerPaymentOption
      */
-    public function setPaymentAmount($paymentAmount)
+    public function setPaymentAmount(mixed $paymentAmount)
     {
         $this->paymentAmount = $paymentAmount;
 
@@ -130,10 +129,9 @@ class CustomerPaymentOption extends Base
     }
 
     /**
-     * @param mixed $nextPaymentDate
      * @return CustomerPaymentOption
      */
-    public function setNextPaymentDate($nextPaymentDate)
+    public function setNextPaymentDate(mixed $nextPaymentDate)
     {
         $this->nextPaymentDate = $nextPaymentDate;
 
@@ -149,10 +147,9 @@ class CustomerPaymentOption extends Base
     }
 
     /**
-     * @param mixed $paymentEndDate
      * @return CustomerPaymentOption
      */
-    public function setPaymentEndDate($paymentEndDate)
+    public function setPaymentEndDate(mixed $paymentEndDate)
     {
         $this->paymentEndDate = $paymentEndDate;
 

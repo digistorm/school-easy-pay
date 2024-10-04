@@ -20,10 +20,9 @@ class BankAccount
     }
 
     /**
-     * @param mixed $bsb
      * @return BankAccount
      */
-    public function setBsb($bsb)
+    public function setBsb(mixed $bsb)
     {
         $this->bsb = $bsb;
 
@@ -39,10 +38,9 @@ class BankAccount
     }
 
     /**
-     * @param mixed $accountNumber
      * @return BankAccount
      */
-    public function setAccountNumber($accountNumber)
+    public function setAccountNumber(mixed $accountNumber)
     {
         $this->accountNumber = $accountNumber;
 
@@ -58,10 +56,9 @@ class BankAccount
     }
 
     /**
-     * @param mixed $accountName
      * @return BankAccount
      */
-    public function setAccountName($accountName)
+    public function setAccountName(mixed $accountName)
     {
         $this->accountName = $accountName;
 
@@ -77,10 +74,9 @@ class BankAccount
     }
 
     /**
-     * @param mixed $bankBranch
      * @return BankAccount
      */
-    public function setBankBranch($bankBranch)
+    public function setBankBranch(mixed $bankBranch)
     {
         $this->bankBranch = $bankBranch;
 
@@ -96,10 +92,9 @@ class BankAccount
     }
 
     /**
-     * @param mixed $bankName
      * @return BankAccount
      */
-    public function setBankName($bankName)
+    public function setBankName(mixed $bankName)
     {
         $this->bankName = $bankName;
 
@@ -115,10 +110,9 @@ class BankAccount
     }
 
     /**
-     * @param mixed $label
      * @return BankAccount
      */
-    public function setLabel($label)
+    public function setLabel(mixed $label)
     {
         $this->label = $label;
 

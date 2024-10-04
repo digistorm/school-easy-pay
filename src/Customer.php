@@ -42,7 +42,7 @@ class Customer extends Base
 
     protected $merchantStaffMember;
 
-    /** @var \Digistorm\SchoolEasyPay\Address $address */
+    /** @var Address $address */
     protected $address;
 
     protected $email;
@@ -68,16 +68,16 @@ class Customer extends Base
 
     protected $paymentEndDate;
 
-    /** @var \Digistorm\SchoolEasyPay\Enums\NotificationMethod $notificationMethod */
+    /** @var NotificationMethod $notificationMethod */
     protected $notificationMethod;
 
-    /** @var \Digistorm\SchoolEasyPay\Reference[] $additionalReferences */
+    /** @var Reference[] $additionalReferences */
     protected $additionalReferences;
 
-    /** @var \Digistorm\SchoolEasyPay\BankAccount $bankAccount */
+    /** @var BankAccount $bankAccount */
     protected $bankAccount;
 
-    /** @var \Digistorm\SchoolEasyPay\Card */
+    /** @var Card */
     protected $card;
 
     /** @var Bool $enableBPayOption */
@@ -86,7 +86,7 @@ class Customer extends Base
     /** @var Bool $sendWelcomeEmail */
     protected $sendWelcomeEmail;
 
-    /** @var \Digistorm\SchoolEasyPay\PaymentAccountProxy $paymentAccountProxy */
+    /** @var PaymentAccountProxy $paymentAccountProxy */
     protected $paymentAccountProxy;
 
     protected function getEndpoint()
@@ -179,10 +179,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $lastName
      * @return Customer
      */
-    public function setLastName($lastName)
+    public function setLastName(mixed $lastName)
     {
         $this->lastName = $lastName;
 
@@ -198,10 +197,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $customerCompanyName
      * @return Customer
      */
-    public function setCustomerCompanyName($customerCompanyName)
+    public function setCustomerCompanyName(mixed $customerCompanyName)
     {
         $this->customerCompanyName = $customerCompanyName;
 
@@ -217,10 +215,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $abn
      * @return Customer
      */
-    public function setAbn($abn)
+    public function setAbn(mixed $abn)
     {
         $this->abn = $abn;
 
@@ -236,10 +233,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $merchantStaffMember
      * @return Customer
      */
-    public function setMerchantStaffMember($merchantStaffMember)
+    public function setMerchantStaffMember(mixed $merchantStaffMember)
     {
         $this->merchantStaffMember = $merchantStaffMember;
 
@@ -247,18 +243,18 @@ class Customer extends Base
     }
 
     /**
-     * @return \Digistorm\SchoolEasyPay\Address
+     * @return Address
      */
-    public function getAddress(): \Digistorm\SchoolEasyPay\Address
+    public function getAddress(): Address
     {
         return $this->address;
     }
 
     /**
-     * @param \Digistorm\SchoolEasyPay\Address $address
+     * @param Address $address
      * @return Customer
      */
-    public function setAddress(\Digistorm\SchoolEasyPay\Address $address): Customer
+    public function setAddress(Address $address): Customer
     {
         $this->address = $address;
 
@@ -274,10 +270,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $email
      * @return Customer
      */
-    public function setEmail($email)
+    public function setEmail(mixed $email)
     {
         $this->email = $email;
 
@@ -293,10 +288,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $mobile
      * @return Customer
      */
-    public function setMobile($mobile)
+    public function setMobile(mixed $mobile)
     {
         $this->mobile = $mobile;
 
@@ -312,10 +306,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $phone
      * @return Customer
      */
-    public function setPhone($phone)
+    public function setPhone(mixed $phone)
     {
         $this->phone = $phone;
 
@@ -331,10 +324,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $fax
      * @return Customer
      */
-    public function setFax($fax)
+    public function setFax(mixed $fax)
     {
         $this->fax = $fax;
 
@@ -350,10 +342,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $dateOfBirth
      * @return Customer
      */
-    public function setDateOfBirth($dateOfBirth)
+    public function setDateOfBirth(mixed $dateOfBirth)
     {
         $this->dateOfBirth = $dateOfBirth;
 
@@ -369,10 +360,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $promotionCode
      * @return Customer
      */
-    public function setPromotionCode($promotionCode)
+    public function setPromotionCode(mixed $promotionCode)
     {
         $this->promotionCode = $promotionCode;
 
@@ -407,10 +397,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $paymentAmount
      * @return Customer
      */
-    public function setPaymentAmount($paymentAmount)
+    public function setPaymentAmount(mixed $paymentAmount)
     {
         $this->paymentAmount = $paymentAmount;
 
@@ -426,10 +415,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $paymentStartDate
      * @return Customer
      */
-    public function setPaymentStartDate($paymentStartDate)
+    public function setPaymentStartDate(mixed $paymentStartDate)
     {
         $this->paymentStartDate = $paymentStartDate;
 
@@ -445,10 +433,9 @@ class Customer extends Base
     }
 
     /**
-     * @param mixed $paymentEndDate
      * @return Customer
      */
-    public function setPaymentEndDate($paymentEndDate)
+    public function setPaymentEndDate(mixed $paymentEndDate)
     {
         $this->paymentEndDate = $paymentEndDate;
 
@@ -475,7 +462,7 @@ class Customer extends Base
     }
 
     /**
-     * @return \Digistorm\SchoolEasyPay\Reference[]
+     * @return Reference[]
      */
     public function getAdditionalReferences(): array
     {
@@ -483,7 +470,7 @@ class Customer extends Base
     }
 
     /**
-     * @param \Digistorm\SchoolEasyPay\Reference[] $additionalReferences
+     * @param Reference[] $additionalReferences
      * @return Customer
      */
     public function setAdditionalReferences(array $additionalReferences): Customer
@@ -494,18 +481,18 @@ class Customer extends Base
     }
 
     /**
-     * @return \Digistorm\SchoolEasyPay\BankAccount
+     * @return BankAccount
      */
-    public function getBankAccount(): \Digistorm\SchoolEasyPay\BankAccount
+    public function getBankAccount(): BankAccount
     {
         return $this->bankAccount;
     }
 
     /**
-     * @param \Digistorm\SchoolEasyPay\BankAccount $bankAccount
+     * @param BankAccount $bankAccount
      * @return Customer
      */
-    public function setBankAccount(\Digistorm\SchoolEasyPay\BankAccount $bankAccount): Customer
+    public function setBankAccount(BankAccount $bankAccount): Customer
     {
         $this->bankAccount = $bankAccount;
 
@@ -513,18 +500,18 @@ class Customer extends Base
     }
 
     /**
-     * @return \Digistorm\SchoolEasyPay\Card
+     * @return Card
      */
-    public function getCard(): \Digistorm\SchoolEasyPay\Card
+    public function getCard(): Card
     {
         return $this->card;
     }
 
     /**
-     * @param \Digistorm\SchoolEasyPay\Card $card
+     * @param Card $card
      * @return Customer
      */
-    public function setCard(\Digistorm\SchoolEasyPay\Card $card): Customer
+    public function setCard(Card $card): Customer
     {
         $this->card = $card;
 
@@ -570,18 +557,18 @@ class Customer extends Base
     }
 
     /**
-     * @return \Digistorm\SchoolEasyPay\PaymentAccountProxy
+     * @return PaymentAccountProxy
      */
-    public function getPaymentAccountProxy(): \Digistorm\SchoolEasyPay\PaymentAccountProxy
+    public function getPaymentAccountProxy(): PaymentAccountProxy
     {
         return $this->paymentAccountProxy;
     }
 
     /**
-     * @param \Digistorm\SchoolEasyPay\PaymentAccountProxy $paymentAccountProxy
+     * @param PaymentAccountProxy $paymentAccountProxy
      * @return Customer
      */
-    public function setPaymentAccountProxy(\Digistorm\SchoolEasyPay\PaymentAccountProxy $paymentAccountProxy): Customer
+    public function setPaymentAccountProxy(PaymentAccountProxy $paymentAccountProxy): Customer
     {
         $this->paymentAccountProxy = $paymentAccountProxy;
 

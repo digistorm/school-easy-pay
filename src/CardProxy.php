@@ -30,10 +30,9 @@ class CardProxy extends Base
     }
 
     /**
-     * @param mixed $customerUniqueId
      * @return CardProxy
      */
-    public function setCustomerUniqueId($customerUniqueId)
+    public function setCustomerUniqueId(mixed $customerUniqueId)
     {
         $this->customerUniqueId = $customerUniqueId;
 
@@ -49,10 +48,9 @@ class CardProxy extends Base
     }
 
     /**
-     * @param mixed $cardNumber
      * @return CardProxy
      */
-    public function setCardNumber($cardNumber)
+    public function setCardNumber(mixed $cardNumber)
     {
         $this->cardNumber = $cardNumber;
 
@@ -68,10 +66,9 @@ class CardProxy extends Base
     }
 
     /**
-     * @param mixed $expiry
      * @return CardProxy
      */
-    public function setExpiry($expiry)
+    public function setExpiry(mixed $expiry)
     {
         $this->expiry = $expiry;
 
@@ -87,10 +84,9 @@ class CardProxy extends Base
     }
 
     /**
-     * @param mixed $cardHolderName
      * @return CardProxy
      */
-    public function setCardHolderName($cardHolderName)
+    public function setCardHolderName(mixed $cardHolderName)
     {
         $this->cardHolderName = $cardHolderName;
 
@@ -106,10 +102,9 @@ class CardProxy extends Base
     }
 
     /**
-     * @param mixed $paymentAmount
      * @return CardProxy
      */
-    public function setPaymentAmount($paymentAmount)
+    public function setPaymentAmount(mixed $paymentAmount)
     {
         $this->paymentAmount = $paymentAmount;
 

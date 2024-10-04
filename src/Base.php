@@ -2,12 +2,13 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use JsonSerializable;
 use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 
-abstract class Base implements \JsonSerializable
+abstract class Base implements JsonSerializable
 {
     use JsonSerialize;
 
