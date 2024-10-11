@@ -2,6 +2,8 @@
 
 namespace Digistorm\SchoolEasyPay\Traits;
 
+use JsonSerializable;
+
 trait JsonSerialize
 {
     /**
@@ -24,7 +26,7 @@ trait JsonSerialize
     public function jsonSerialize()
     {
         return array_filter(get_object_vars($this), function ($value, $key) {
-            if (is_object($value) && isset(class_implements($value)[\JsonSerializable::class])) {
+            if (is_object($value) && isset(class_implements($value)[JsonSerializable::class])) {
                 $value = json_encode($value);
             }
             return !in_array($key, $this->jsonExclude()) && $value !== null;

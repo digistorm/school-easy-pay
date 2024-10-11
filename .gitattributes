@@ -1,0 +1,5 @@
+.gitattributes
+.github/codeowners
+docker-compose.yml export-ignore
+Dockerfile export-ignore
+rector.php export-ignore

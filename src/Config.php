@@ -58,10 +58,9 @@ class Config
     }
 
     /**
-     * @param mixed $baseUri
      * @return Config
      */
-    public function setBaseUri($baseUri)
+    public function setBaseUri(mixed $baseUri)
     {
         $this->baseUri = $baseUri;
 

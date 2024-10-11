@@ -2,6 +2,8 @@
 
 namespace Digistorm\SchoolEasyPay\Exceptions;
 
-class SchoolEasyPayException extends \Exception
+use Exception;
+
+class SchoolEasyPayException extends Exception
 {
 }

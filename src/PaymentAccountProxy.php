@@ -16,10 +16,9 @@ class PaymentAccountProxy
     }
 
     /**
-     * @param mixed $proxy
      * @return PaymentAccountProxy
      */
-    public function setProxy($proxy)
+    public function setProxy(mixed $proxy)
     {
         $this->proxy = $proxy;
 
@@ -35,10 +34,9 @@ class PaymentAccountProxy
     }
 
     /**
-     * @param mixed $label
      * @return PaymentAccountProxy
      */
-    public function setLabel($label)
+    public function setLabel(mixed $label)
     {
         $this->label = $label;
 

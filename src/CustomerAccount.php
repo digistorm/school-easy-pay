@@ -48,18 +48,18 @@ class CustomerAccount extends Base
     }
 
     /**
-     * @return \Digistorm\SchoolEasyPay\Card
+     * @return Card
      */
-    public function getCreditCardProxy(): \Digistorm\SchoolEasyPay\Card
+    public function getCreditCardProxy(): Card
     {
         return $this->creditCardProxy;
     }
 
     /**
-     * @param \Digistorm\SchoolEasyPay\Card $card
+     * @param Card $card
      * @return CustomerAccount
      */
-    public function setCreditCardProxy(\Digistorm\SchoolEasyPay\Card $card): CustomerAccount
+    public function setCreditCardProxy(Card $card): CustomerAccount
     {
         $this->creditCardProxy = $card;
 

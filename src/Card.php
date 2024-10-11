@@ -2,9 +2,10 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use JsonSerializable;
 use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
 
-class Card implements \JsonSerializable
+class Card implements JsonSerializable
 {
     use JsonSerialize;
 
@@ -20,10 +21,9 @@ class Card implements \JsonSerializable
     }
 
     /**
-     * @param mixed $cardProxy
      * @return Card
      */
-    public function setCardProxy($cardProxy)
+    public function setCardProxy(mixed $cardProxy)
     {
         $this->cardProxy = $cardProxy;
 
@@ -39,10 +39,9 @@ class Card implements \JsonSerializable
     }
 
     /**
-     * @param mixed $label
      * @return Card
      */
-    public function setLabel($label)
+    public function setLabel(mixed $label)
     {
         $this->label = $label;
 

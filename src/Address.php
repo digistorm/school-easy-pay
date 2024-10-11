@@ -2,9 +2,10 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use JsonSerializable;
 use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
 
-class Address implements \JsonSerializable
+class Address implements JsonSerializable
 {
     use JsonSerialize;
     
@@ -24,10 +25,9 @@ class Address implements \JsonSerializable
     }
 
     /**
-     * @param mixed $address1
      * @return Address
      */
-    public function setAddress1($address1)
+    public function setAddress1(mixed $address1)
     {
         $this->address1 = $address1;
 
@@ -43,10 +43,9 @@ class Address implements \JsonSerializable
     }
 
     /**
-     * @param mixed $address2
      * @return Address
      */
-    public function setAddress2($address2)
+    public function setAddress2(mixed $address2)
     {
         $this->address2 = $address2;
 
@@ -62,10 +61,9 @@ class Address implements \JsonSerializable
     }
 
     /**
-     * @param mixed $suburb
      * @return Address
      */
-    public function setSuburb($suburb)
+    public function setSuburb(mixed $suburb)
     {
         $this->suburb = $suburb;
 
@@ -81,10 +79,9 @@ class Address implements \JsonSerializable
     }
 
     /**
-     * @param mixed $state
      * @return Address
      */
-    public function setState($state)
+    public function setState(mixed $state)
     {
         $this->state = $state;
 
@@ -100,10 +97,9 @@ class Address implements \JsonSerializable
     }
 
     /**
-     * @param mixed $country
      * @return Address
      */
-    public function setCountry($country)
+    public function setCountry(mixed $country)
     {
         $this->country = $country;
 
@@ -119,10 +115,9 @@ class Address implements \JsonSerializable
     }
 
     /**
-     * @param mixed $postcode
      * @return Address
      */
-    public function setPostcode($postcode)
+    public function setPostcode(mixed $postcode)
     {
         $this->postcode = $postcode;
 
