@@ -1,4 +1,4 @@
-# Use the official PHP 8.0 image
+# Use the official PHP 8.1 image
 FROM php:8.1-cli
 
 # Set working directory
