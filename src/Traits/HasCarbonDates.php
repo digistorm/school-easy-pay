@@ -12,6 +12,7 @@ trait HasCarbonDates
     {
         return $date->format($outputFormat);
     }
+
     /**
      * @throws SchoolEasyPayException
      */
