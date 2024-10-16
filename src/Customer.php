@@ -2,9 +2,13 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use Carbon\Carbon;
 use Digistorm\SchoolEasyPay\Enums\NotificationMethod;
 use Digistorm\SchoolEasyPay\Enums\PaymentFrequency;
 use Digistorm\SchoolEasyPay\Enums\PaymentOption;
+use Digistorm\SchoolEasyPay\Exceptions\SchoolEasyPayException;
+use Digistorm\SchoolEasyPay\Traits\HasCarbonDates;
+use Digistorm\SchoolEasyPay\Traits\HasPaymentAmount;
 
 /**
  * Class Customer
@@ -14,6 +18,9 @@ use Digistorm\SchoolEasyPay\Enums\PaymentOption;
  */
 class Customer extends Base
 {
+    use HasPaymentAmount;
+    use HasCarbonDates;
+
     const REQUIRED = [
         'customerReference',
         'firstName',
@@ -28,433 +35,293 @@ class Customer extends Base
         'notificationMethod',
     ];
 
-    protected $customerReference;
+    protected string $customerReference;
 
-    protected $title;
+    protected string $title;
 
-    protected $firstName;
+    protected string $firstName;
 
-    protected $lastName;
+    protected string $lastName;
 
-    protected $customerCompanyName;
+    protected string $customerCompanyName;
 
-    protected $abn;
+    protected string $abn;
 
-    protected $merchantStaffMember;
+    protected string $merchantStaffMember;
 
-    /** @var Address $address */
-    protected $address;
+    protected Address $address;
 
-    protected $email;
+    protected string $email;
 
-    protected $mobile;
+    protected string $mobile;
 
-    protected $phone;
+    protected string $phone;
 
-    protected $fax;
+    protected string $fax;
 
-    protected $dateOfBirth;
+    protected Carbon $dateOfBirth;
 
-    protected $promotionCode;
+    protected string $promotionCode;
 
-    /** @var CustomerPaymentOption $paymentOption */
-    protected $paymentOption;
+    protected PaymentOption $paymentOption;
 
-    protected $paymentAmount;
-    /** @var PaymentFrequency $paymentFrequency */
-    protected $paymentFrequency;
+    protected PaymentFrequency $paymentFrequency;
 
-    protected $paymentStartDate;
+    protected Carbon $paymentStartDate;
 
-    protected $paymentEndDate;
+    protected Carbon $paymentEndDate;
 
-    /** @var NotificationMethod $notificationMethod */
-    protected $notificationMethod;
+    protected NotificationMethod $notificationMethod;
 
     /** @var Reference[] $additionalReferences */
-    protected $additionalReferences;
+    protected array $additionalReferences;
 
-    /** @var BankAccount $bankAccount */
-    protected $bankAccount;
+    protected BankAccount $bankAccount;
 
-    /** @var Card */
-    protected $card;
+    protected Card $card;
 
-    /** @var Bool $enableBPayOption */
-    protected $enableBPayOption;
+    protected bool $enableBPayOption;
 
-    /** @var Bool $sendWelcomeEmail */
-    protected $sendWelcomeEmail;
+    protected bool $sendWelcomeEmail;
 
-    /** @var PaymentAccountProxy $paymentAccountProxy */
-    protected $paymentAccountProxy;
+    protected PaymentAccountProxy $paymentAccountProxy;
 
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
         return '/customers';
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCustomerReference()
+    public function getCustomerReference(): string
     {
         return $this->customerReference;
     }
 
-    /**
-     * @param mixed $customerReference
-     * @return Customer
-     */
-    public function setCustomerReference(string $customerReference)
+    public function setCustomerReference(string $customerReference): self
     {
         $this->customerReference = $customerReference;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
 
-    /**
-     * @param mixed $title
-     * @return Customer
-     */
-    public function setTitle(string $title)
+    public function setTitle(string $title): self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFirstName()
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
 
-    /**
-     * @param mixed $firstName
-     * @return Customer
-     */
-    public function setFirstName(string $firstName)
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentFrequency()
+    public function getPaymentFrequency(): PaymentFrequency
     {
         return $this->paymentFrequency;
     }
 
-    /**
-     * @param mixed $paymentFrequency
-     * @return Customer
-     */
-    public function setPaymentFrequency(PaymentFrequency $paymentFrequency)
+    public function setPaymentFrequency(PaymentFrequency $paymentFrequency): self
     {
         $this->paymentFrequency = $paymentFrequency;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLastName()
+    public function getLastName(): string
     {
         return $this->lastName;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setLastName(mixed $lastName)
+    public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCustomerCompanyName()
+    public function getCustomerCompanyName(): string
     {
         return $this->customerCompanyName;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setCustomerCompanyName(mixed $customerCompanyName)
+    public function setCustomerCompanyName(mixed $customerCompanyName): self
     {
         $this->customerCompanyName = $customerCompanyName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAbn()
+    public function getAbn(): string
     {
         return $this->abn;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setAbn(mixed $abn)
+    public function setAbn(string $abn): self
     {
         $this->abn = $abn;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMerchantStaffMember()
+    public function getMerchantStaffMember(): string
     {
         return $this->merchantStaffMember;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setMerchantStaffMember(mixed $merchantStaffMember)
+    public function setMerchantStaffMember(string $merchantStaffMember): self
     {
         $this->merchantStaffMember = $merchantStaffMember;
 
         return $this;
     }
 
-    /**
-     * @return Address
-     */
     public function getAddress(): Address
     {
         return $this->address;
     }
 
-    /**
-     * @param Address $address
-     * @return Customer
-     */
-    public function setAddress(Address $address): Customer
+    public function setAddress(Address $address): self
     {
         $this->address = $address;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setEmail(mixed $email)
+    public function setEmail(mixed $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMobile()
+    public function getMobile(): string
     {
         return $this->mobile;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setMobile(mixed $mobile)
+    public function setMobile(string $mobile): self
     {
         $this->mobile = $mobile;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPhone()
+    public function getPhone(): string
     {
         return $this->phone;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setPhone(mixed $phone)
+    public function setPhone(string $phone): self
     {
         $this->phone = $phone;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getFax()
+    public function getFax(): string
     {
         return $this->fax;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setFax(mixed $fax)
+    public function setFax(string $fax): self
     {
         $this->fax = $fax;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDateOfBirth()
+    public function getDateOfBirth(): string
     {
-        return $this->dateOfBirth;
+        return $this->castCarbonToString($this->dateOfBirth);
     }
 
     /**
-     * @return Customer
+     * @throws SchoolEasyPayException
      */
-    public function setDateOfBirth(mixed $dateOfBirth)
+    public function setDateOfBirth(string $dateOfBirth): self
     {
-        $this->dateOfBirth = $dateOfBirth;
+        $this->dateOfBirth = $this->castStringToCarbon($dateOfBirth);
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPromotionCode()
+    public function getPromotionCode(): string
     {
         return $this->promotionCode;
     }
 
-    /**
-     * @return Customer
-     */
-    public function setPromotionCode(mixed $promotionCode)
+    public function setPromotionCode(mixed $promotionCode): self
     {
         $this->promotionCode = $promotionCode;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentOption()
+    public function getPaymentOption(): PaymentOption
     {
         return $this->paymentOption;
     }
 
-    /**
-     * @param mixed $paymentOption
-     * @return Customer
-     */
-    public function setPaymentOption(PaymentOption $paymentOption)
+    public function setPaymentOption(PaymentOption $paymentOption): self
     {
         $this->paymentOption = $paymentOption;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentAmount()
+    public function getPaymentStartDate(): string
     {
-        return $this->paymentAmount;
+        return $this->castCarbonToString($this->paymentStartDate);
     }
 
     /**
-     * @return Customer
+     * @throws SchoolEasyPayException
      */
-    public function setPaymentAmount(mixed $paymentAmount)
+    public function setPaymentStartDate(string $paymentStartDate): self
     {
-        $this->paymentAmount = $paymentAmount;
+        $this->paymentStartDate = $this->castStringToCarbon($paymentStartDate);
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentStartDate()
+    public function getPaymentEndDate(): string
     {
-        return $this->paymentStartDate;
+        return $this->castCarbonToString($this->paymentEndDate);
     }
 
     /**
-     * @return Customer
+     * @throws SchoolEasyPayException
      */
-    public function setPaymentStartDate(mixed $paymentStartDate)
+    public function setPaymentEndDate(string $paymentEndDate): self
     {
-        $this->paymentStartDate = $paymentStartDate;
+        $this->paymentEndDate = $this->castStringToCarbon($paymentEndDate);
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentEndDate()
-    {
-        return $this->paymentEndDate;
-    }
-
-    /**
-     * @return Customer
-     */
-    public function setPaymentEndDate(mixed $paymentEndDate)
-    {
-        $this->paymentEndDate = $paymentEndDate;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNotificationMethod()
+    public function getNotificationMethod(): NotificationMethod
     {
         return $this->notificationMethod;
     }
 
-    /**
-     * @param mixed $notificationMethod
-     * @return Customer
-     */
-    public function setNotificationMethod(NotificationMethod $notificationMethod)
+    public function setNotificationMethod(NotificationMethod $notificationMethod): self
     {
         $this->notificationMethod = $notificationMethod;
 
@@ -471,104 +338,68 @@ class Customer extends Base
 
     /**
      * @param Reference[] $additionalReferences
-     * @return Customer
      */
-    public function setAdditionalReferences(array $additionalReferences): Customer
+    public function setAdditionalReferences(array $additionalReferences): self
     {
         $this->additionalReferences = $additionalReferences;
 
         return $this;
     }
 
-    /**
-     * @return BankAccount
-     */
     public function getBankAccount(): BankAccount
     {
         return $this->bankAccount;
     }
 
-    /**
-     * @param BankAccount $bankAccount
-     * @return Customer
-     */
-    public function setBankAccount(BankAccount $bankAccount): Customer
+    public function setBankAccount(BankAccount $bankAccount): self
     {
         $this->bankAccount = $bankAccount;
 
         return $this;
     }
 
-    /**
-     * @return Card
-     */
     public function getCard(): Card
     {
         return $this->card;
     }
 
-    /**
-     * @param Card $card
-     * @return Customer
-     */
-    public function setCard(Card $card): Customer
+    public function setCard(Card $card): self
     {
         $this->card = $card;
 
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isEnableBPayOption(): bool
     {
         return $this->enableBPayOption;
     }
 
-    /**
-     * @param bool $enableBPayOption
-     * @return Customer
-     */
-    public function setEnableBPayOption(bool $enableBPayOption): Customer
+    public function setEnableBPayOption(bool $enableBPayOption): self
     {
         $this->enableBPayOption = $enableBPayOption;
 
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isSendWelcomeEmail(): bool
     {
         return $this->sendWelcomeEmail;
     }
 
-    /**
-     * @param bool $sendWelcomeEmail
-     * @return Customer
-     */
-    public function setSendWelcomeEmail(bool $sendWelcomeEmail): Customer
+    public function setSendWelcomeEmail(bool $sendWelcomeEmail): self
     {
         $this->sendWelcomeEmail = $sendWelcomeEmail;
 
         return $this;
     }
 
-    /**
-     * @return PaymentAccountProxy
-     */
     public function getPaymentAccountProxy(): PaymentAccountProxy
     {
         return $this->paymentAccountProxy;
     }
 
-    /**
-     * @param PaymentAccountProxy $paymentAccountProxy
-     * @return Customer
-     */
-    public function setPaymentAccountProxy(PaymentAccountProxy $paymentAccountProxy): Customer
+    public function setPaymentAccountProxy(PaymentAccountProxy $paymentAccountProxy): self
     {
         $this->paymentAccountProxy = $paymentAccountProxy;
 

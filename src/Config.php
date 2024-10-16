@@ -7,60 +7,45 @@ use phpDocumentor\Reflection\Types\Boolean;
 
 class Config
 {
-    protected $apiKey;
-    protected $baseUri;
-    protected $password;
-    protected $username;
+    protected string $baseUri;
 
-    public function __construct(string $apiKey, string $username, string $password, bool $testMode = false)
-    {
+    /**
+     * @throws ApiConfigException
+     */
+    public function __construct(
+        protected string $apiKey,
+        protected string $username,
+        protected string $password,
+        protected bool $testMode = false
+    ) {
         if (empty($apiKey) || empty($username) || empty($password)) {
             throw new ApiConfigException('Api key, username and password are all required.');
         }
 
-        $this->apiKey = $apiKey;
-        $this->username = $username;
-        $this->password = $password;
-
         $this->baseUri = $testMode ? 'https://apiuat.schooleasypay.com.au/v2' : 'https://api.schooleasypay.com.au/v2';
     }
 
-    /**
-     * @return string
-     */
     public function getApiKey(): string
     {
         return $this->apiKey;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBaseUri()
+    public function getBaseUri(): string
     {
         return $this->baseUri;
     }
 
-    /**
-     * @return Config
-     */
-    public function setBaseUri(mixed $baseUri)
+    public function setBaseUri(string $baseUri): self
     {
         $this->baseUri = $baseUri;
 

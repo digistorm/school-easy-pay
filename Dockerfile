@@ -1,5 +1,5 @@
 # Use the official PHP 8.0 image
-FROM php:8.0-cli
+FROM php:8.1-cli
 
 # Set working directory
 WORKDIR /var/www/html

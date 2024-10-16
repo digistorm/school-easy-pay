@@ -12,7 +12,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     // Apply PHP-specific sets
-    $rectorConfig->import(LevelSetList::UP_TO_PHP_80);
+    $rectorConfig->import(LevelSetList::UP_TO_PHP_81);
 
     // Add the rule to import fully qualified names
     $rectorConfig->importNames();

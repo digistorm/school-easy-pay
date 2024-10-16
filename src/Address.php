@@ -9,115 +9,79 @@ class Address implements JsonSerializable
 {
     use JsonSerialize;
     
-    protected $address1;
-    protected $address2;
-    protected $suburb;
-    protected $state;
-    protected $country;
-    protected $postcode;
+    protected string $address1;
+    protected string $address2;
+    protected string $suburb;
+    protected string $state;
+    protected string $country;
+    protected string $postcode;
 
-    /**
-     * @return mixed
-     */
-    public function getAddress1()
+    public function getAddress1(): string
     {
         return $this->address1;
     }
 
-    /**
-     * @return Address
-     */
-    public function setAddress1(mixed $address1)
+    public function setAddress1(string $address1): self
     {
         $this->address1 = $address1;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAddress2()
+    public function getAddress2(): string
     {
         return $this->address2;
     }
 
-    /**
-     * @return Address
-     */
-    public function setAddress2(mixed $address2)
+    public function setAddress2(string $address2): self
     {
         $this->address2 = $address2;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSuburb()
+    public function getSuburb(): string
     {
         return $this->suburb;
     }
 
-    /**
-     * @return Address
-     */
-    public function setSuburb(mixed $suburb)
+    public function setSuburb(string $suburb): self
     {
         $this->suburb = $suburb;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getState()
+    public function getState(): string
     {
         return $this->state;
     }
 
-    /**
-     * @return Address
-     */
-    public function setState(mixed $state)
+    public function setState(string $state): self
     {
         $this->state = $state;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCountry()
+    public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * @return Address
-     */
-    public function setCountry(mixed $country)
+    public function setCountry(mixed $country): self
     {
         $this->country = $country;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPostcode()
+    public function getPostcode(): string
     {
         return $this->postcode;
     }
 
-    /**
-     * @return Address
-     */
-    public function setPostcode(mixed $postcode)
+    public function setPostcode(mixed $postcode): self
     {
         $this->postcode = $postcode;
 

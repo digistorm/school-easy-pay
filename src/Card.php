@@ -9,39 +9,27 @@ class Card implements JsonSerializable
 {
     use JsonSerialize;
 
-    protected $cardProxy;
-    protected $label;
+    protected string $cardProxy;
+    protected string $label;
 
-    /**
-     * @return mixed
-     */
-    public function getCardProxy()
+    public function getCardProxy(): string
     {
         return $this->cardProxy;
     }
 
-    /**
-     * @return Card
-     */
-    public function setCardProxy(mixed $cardProxy)
+    public function setCardProxy(string $cardProxy): self
     {
         $this->cardProxy = $cardProxy;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @return Card
-     */
-    public function setLabel(mixed $label)
+    public function setLabel(string $label): self
     {
         $this->label = $label;
 
