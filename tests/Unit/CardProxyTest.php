@@ -1,10 +1,11 @@
 <?php
 
+namespace Tests\Unit;
+
 use Digistorm\SchoolEasyPay\Config;
 use PHPUnit\Framework\TestCase;
 use Digistorm\SchoolEasyPay\CardProxy;
 use Digistorm\SchoolEasyPay\Exceptions\SchoolEasyPayException;
-use Carbon\Carbon;
 
 class CardProxyTest extends TestCase
 {

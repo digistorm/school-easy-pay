@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Digistorm\SchoolEasyPay;
+namespace Tests\Unit;
 
 use Carbon\Carbon;
 use Digistorm\SchoolEasyPay\Card;
@@ -12,8 +12,9 @@ use Digistorm\SchoolEasyPay\Enums\NotificationMethod;
 use Digistorm\SchoolEasyPay\Enums\PaymentFrequency;
 use Digistorm\SchoolEasyPay\Enums\PaymentOption;
 use Digistorm\SchoolEasyPay\Exceptions\SchoolEasyPayException;
+use PHPUnit\Framework\TestCase;
 
-class CustomerTest extends \PHPUnit\Framework\TestCase
+class CustomerTest extends TestCase
 {
     public function setUp(): void
     {
@@ -92,7 +93,7 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testSetAndGetPaymentFrequency()
     {
         $customer = new Customer($this->config);
-        $frequency = PaymentFrequency::WEEKLY; // Assuming PaymentFrequency is an enum
+        $frequency = PaymentFrequency::WEEKLY;
 
         $customer->setPaymentFrequency($frequency);
         $this->assertSame($frequency, $customer->getPaymentFrequency());
@@ -101,7 +102,7 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testSetAndGetPaymentOption()
     {
         $customer = new Customer($this->config);
-        $option = PaymentOption::ONE_OFF; // Assuming PaymentOption is an enum
+        $option = PaymentOption::ONE_OFF;
 
         $customer->setPaymentOption($option);
         $this->assertSame($option, $customer->getPaymentOption());
@@ -110,7 +111,7 @@ class CustomerTest extends \PHPUnit\Framework\TestCase
     public function testSetAndGetNotificationMethod()
     {
         $customer = new Customer($this->config);
-        $notificationMethod = NotificationMethod::EMAIL; // Assuming NotificationMethod is an enum
+        $notificationMethod = NotificationMethod::EMAIL;
 
         $customer->setNotificationMethod($notificationMethod);
         $this->assertSame($notificationMethod, $customer->getNotificationMethod());
