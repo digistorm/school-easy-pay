@@ -58,7 +58,9 @@ class CustomerTest extends TestCase
         $dateString = '2000-01-01';
         try {
             $customer->setDateOfBirth($dateString);
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+            $this->fail($e->getMessage());
+        }
 
         $expected = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d\T00:00:00.000\Z');
         $this->assertEquals($expected, $customer->getDateOfBirth());
@@ -70,7 +72,9 @@ class CustomerTest extends TestCase
         $dateString = '2024-10-15';
         try {
             $customer->setPaymentStartDate($dateString);
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+            $this->fail($e->getMessage());
+        }
 
         $expected = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d\T00:00:00.000\Z');
         $this->assertEquals($expected, $customer->getPaymentStartDate());
@@ -82,7 +86,9 @@ class CustomerTest extends TestCase
         $dateString = '2025-10-15';
         try {
             $customer->setPaymentEndDate($dateString);
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+            $this->fail($e->getMessage());
+        }
 
 
         $expected = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d\T00:00:00.000\Z');
