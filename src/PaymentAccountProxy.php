@@ -4,39 +4,27 @@ namespace Digistorm\SchoolEasyPay;
 
 class PaymentAccountProxy
 {
-    protected $proxy;
-    protected $label;
+    protected string $proxy;
+    protected string $label;
 
-    /**
-     * @return mixed
-     */
-    public function getProxy()
+    public function getProxy(): string
     {
         return $this->proxy;
     }
 
-    /**
-     * @return PaymentAccountProxy
-     */
-    public function setProxy(mixed $proxy)
+    public function setProxy(string $proxy): self
     {
         $this->proxy = $proxy;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @return PaymentAccountProxy
-     */
-    public function setLabel(mixed $label)
+    public function setLabel(mixed $label): self
     {
         $this->label = $label;
 

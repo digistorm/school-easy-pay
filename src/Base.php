@@ -2,29 +2,31 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use GuzzleHttp\Exception\GuzzleException;
 use JsonSerializable;
 use Digistorm\SchoolEasyPay\Traits\JsonSerialize;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\ResponseInterface;
 
 abstract class Base implements JsonSerializable
 {
     use JsonSerialize;
 
-    protected $client;
-    protected $config;
-    protected $headers;
+    protected array $headers;
 
-    abstract protected function getEndpoint();
+    abstract protected function getEndpoint(): string;
 
-    public function __construct(Config $config, $client = null)
+    public function __construct(protected Config $config, protected ?Client $client = null)
     {
-        $this->config = $config;
-        
         $this->headers = [
             'Api-Key' => $this->config->getApiKey(),
-            'Authorization' => 'Basic ' . base64_encode(sprintf('%s:%s', $this->config->getUsername(), $this->config->getPassword())),
+            'Authorization' => 'Basic ' . base64_encode(sprintf(
+                '%s:%s',
+                $this->config->getUsername(),
+                $this->config->getPassword()
+            )),
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];
@@ -41,7 +43,10 @@ abstract class Base implements JsonSerializable
         ];
     }
 
-    public function create()
+    /**
+     * @throws GuzzleException
+     */
+    public function create(): ResponseInterface
     {
         return $this->client->post($this->config->getBaseUri() . $this->getEndpoint(), [
             RequestOptions::BODY => self::toJson(),
@@ -49,7 +54,10 @@ abstract class Base implements JsonSerializable
         ]);
     }
 
-    public function update()
+    /**
+     * @throws GuzzleException
+     */
+    public function update(): ResponseInterface
     {
         return $this->client->put($this->config->getBaseUri() . $this->getEndpoint(), [
             RequestOptions::BODY => self::toJson(),
@@ -57,7 +65,7 @@ abstract class Base implements JsonSerializable
         ]);
     }
 
-    public function setClient(ClientInterface $client)
+    public function setClient(ClientInterface $client): void
     {
         $this->client = $client;
     }

@@ -2,6 +2,11 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use Carbon\Carbon;
+use Digistorm\SchoolEasyPay\Exceptions\SchoolEasyPayException;
+use Digistorm\SchoolEasyPay\Traits\HasCarbonDates;
+use Digistorm\SchoolEasyPay\Traits\HasPaymentAmount;
+
 /**
  * Class Customer
  *
@@ -10,13 +15,15 @@ namespace Digistorm\SchoolEasyPay;
  */
 class CardProxy extends Base
 {
-    protected $customerUniqueId;
-    protected $cardNumber;
-    protected $expiry;
-    protected $cardHolderName;
-    protected $paymentAmount;
+    use HasPaymentAmount;
+    use HasCarbonDates;
 
-    protected function getEndpoint()
+    protected string $customerUniqueId;
+    protected string $cardNumber;
+    protected Carbon $expiry;
+    protected string $cardHolderName;
+
+    protected function getEndpoint(): string
     {
         return 'cardproxies';
     }
@@ -24,89 +31,53 @@ class CardProxy extends Base
     /**
      * @return mixed
      */
-    public function getCustomerUniqueId()
+    public function getCustomerUniqueId(): string
     {
         return $this->customerUniqueId;
     }
 
-    /**
-     * @return CardProxy
-     */
-    public function setCustomerUniqueId(mixed $customerUniqueId)
+    public function setCustomerUniqueId(string $customerUniqueId): self
     {
         $this->customerUniqueId = $customerUniqueId;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCardNumber()
+    public function getCardNumber(): string
     {
         return $this->cardNumber;
     }
 
-    /**
-     * @return CardProxy
-     */
-    public function setCardNumber(mixed $cardNumber)
+    public function setCardNumber(string $cardNumber): self
     {
         $this->cardNumber = $cardNumber;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getExpiry()
+    public function getExpiry(): string
     {
-        return $this->expiry;
+        return $this->castCarbonToString($this->expiry, 'm/y');
     }
 
     /**
-     * @return CardProxy
+     * @throws SchoolEasyPayException
      */
-    public function setExpiry(mixed $expiry)
+    public function setExpiry(string $expiry): self
     {
-        $this->expiry = $expiry;
-
+        $dateStringWithDay = '01/' . $expiry;
+        $this->expiry = $this->castStringToCarbon($dateStringWithDay, 'd/m/y');
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCardHolderName()
+    public function getCardHolderName(): string
     {
         return $this->cardHolderName;
     }
 
-    /**
-     * @return CardProxy
-     */
-    public function setCardHolderName(mixed $cardHolderName)
+    public function setCardHolderName(string $cardHolderName): self
     {
         $this->cardHolderName = $cardHolderName;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPaymentAmount()
-    {
-        return $this->paymentAmount;
-    }
-
-    /**
-     * @return CardProxy
-     */
-    public function setPaymentAmount(mixed $paymentAmount)
-    {
-        $this->paymentAmount = $paymentAmount;
 
         return $this;
     }

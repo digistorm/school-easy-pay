@@ -2,9 +2,13 @@
 
 namespace Digistorm\SchoolEasyPay;
 
+use Carbon\Carbon;
 use Digistorm\SchoolEasyPay\Enums\NotificationMethod;
 use Digistorm\SchoolEasyPay\Enums\PaymentFrequency;
-use Digistorm\SchoolEasyPay\Enums\PaymentOption as PaymentOption;
+use Digistorm\SchoolEasyPay\Enums\PaymentOption;
+use Digistorm\SchoolEasyPay\Exceptions\SchoolEasyPayException;
+use Digistorm\SchoolEasyPay\Traits\HasCarbonDates;
+use Digistorm\SchoolEasyPay\Traits\HasPaymentAmount;
 
 /**
  * Class CustomerPaymentOption
@@ -14,6 +18,9 @@ use Digistorm\SchoolEasyPay\Enums\PaymentOption as PaymentOption;
  */
 class CustomerPaymentOption extends Base
 {
+    use HasPaymentAmount;
+    use HasCarbonDates;
+
     const REQUIRED = [
         'customerReference',
         'paymentOption',
@@ -24,151 +31,95 @@ class CustomerPaymentOption extends Base
         'notificationMethod',
     ];
 
-    protected $customerReference;
+    protected string $customerReference;
 
-    /** @var PaymentOption $paymentOption */
-    protected $paymentOption;
+    protected PaymentOption $paymentOption;
 
-    protected $paymentAmount;
-    /** @var PaymentFrequency $paymentFrequency */
-    protected $paymentFrequency;
+    protected PaymentFrequency $paymentFrequency;
 
-    protected $nextPaymentDate;
+    protected Carbon $nextPaymentDate;
 
-    protected $paymentEndDate;
+    protected Carbon $paymentEndDate;
 
-    /** @var NotificationMethod $notificationMethod */
-    protected $notificationMethod;
+    protected NotificationMethod $notificationMethod;
 
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
         return '/customers/' . $this->customerReference . '/paymentOption';
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCustomerReference()
+    public function getCustomerReference(): string
     {
         return $this->customerReference;
     }
 
-    /**
-     * @param mixed $customerReference
-     * @return CustomerPaymentOption
-     */
-    public function setCustomerReference(string $customerReference)
+    public function setCustomerReference(string $customerReference): self
     {
         $this->customerReference = $customerReference;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentFrequency()
+    public function getPaymentFrequency(): PaymentFrequency
     {
         return $this->paymentFrequency;
     }
 
-    /**
-     * @param mixed $paymentFrequency
-     * @return CustomerPaymentOption
-     */
-    public function setPaymentFrequency(PaymentFrequency $paymentFrequency)
+    public function setPaymentFrequency(PaymentFrequency $paymentFrequency): self
     {
         $this->paymentFrequency = $paymentFrequency;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentOption()
+    public function getPaymentOption(): PaymentOption
     {
         return $this->paymentOption;
     }
 
-    /**
-     * @param mixed $paymentOption
-     * @return CustomerPaymentOption
-     */
-    public function setPaymentOption(PaymentOption $paymentOption)
+    public function setPaymentOption(PaymentOption $paymentOption): self
     {
         $this->paymentOption = $paymentOption;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentAmount()
+    public function getNextPaymentDate(): string
     {
-        return $this->paymentAmount;
+        return $this->castCarbonToString($this->nextPaymentDate);
     }
 
     /**
-     * @return CustomerPaymentOption
+     * @throws SchoolEasyPayException
      */
-    public function setPaymentAmount(mixed $paymentAmount)
+    public function setNextPaymentDate(string $nextPaymentDate): self
     {
-        $this->paymentAmount = $paymentAmount;
+        $this->nextPaymentDate = $this->castStringToCarbon($nextPaymentDate);
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNextPaymentDate()
+    public function getPaymentEndDate(): string
     {
-        return $this->nextPaymentDate;
+        return $this->castCarbonToString($this->paymentEndDate);
     }
 
     /**
-     * @return CustomerPaymentOption
+     * @throws SchoolEasyPayException
      */
-    public function setNextPaymentDate(mixed $nextPaymentDate)
+    public function setPaymentEndDate(string $paymentEndDate): self
     {
-        $this->nextPaymentDate = $nextPaymentDate;
+        $this->paymentEndDate = $this->castStringToCarbon($paymentEndDate);
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPaymentEndDate()
-    {
-        return $this->paymentEndDate;
-    }
-
-    /**
-     * @return CustomerPaymentOption
-     */
-    public function setPaymentEndDate(mixed $paymentEndDate)
-    {
-        $this->paymentEndDate = $paymentEndDate;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNotificationMethod()
+    public function getNotificationMethod(): NotificationMethod
     {
         return $this->notificationMethod;
     }
 
-    /**
-     * @param mixed $notificationMethod
-     * @return CustomerPaymentOption
-     */
-    public function setNotificationMethod(NotificationMethod $notificationMethod)
+    public function setNotificationMethod(NotificationMethod $notificationMethod): self
     {
         $this->notificationMethod = $notificationMethod;
 

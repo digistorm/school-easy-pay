@@ -4,6 +4,6 @@ namespace Digistorm\SchoolEasyPay;
 
 class Reference
 {
-    protected $fullName;
-    protected $customerReference;
+    protected string $fullName;
+    protected string $customerReference;
 }

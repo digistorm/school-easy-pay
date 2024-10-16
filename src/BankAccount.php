@@ -4,115 +4,79 @@ namespace Digistorm\SchoolEasyPay;
 
 class BankAccount
 {
-    protected $bsb;
-    protected $accountNumber;
-    protected $accountName;
-    protected $bankBranch;
-    protected $bankName;
-    protected $label;
+    protected string $bsb;
+    protected string $accountNumber;
+    protected string $accountName;
+    protected string $bankBranch;
+    protected string $bankName;
+    protected string $label;
 
-    /**
-     * @return mixed
-     */
-    public function getBsb()
+    public function getBsb(): string
     {
         return $this->bsb;
     }
 
-    /**
-     * @return BankAccount
-     */
-    public function setBsb(mixed $bsb)
+    public function setBsb(string|int $bsb): self
     {
-        $this->bsb = $bsb;
+        $this->bsb = (string) $bsb;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAccountNumber()
+    public function getAccountNumber(): string
     {
         return $this->accountNumber;
     }
 
-    /**
-     * @return BankAccount
-     */
-    public function setAccountNumber(mixed $accountNumber)
+    public function setAccountNumber(string|int $accountNumber): self
     {
-        $this->accountNumber = $accountNumber;
+        $this->accountNumber = (string) $accountNumber;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getAccountName()
+    public function getAccountName(): string
     {
         return $this->accountName;
     }
 
-    /**
-     * @return BankAccount
-     */
-    public function setAccountName(mixed $accountName)
+    public function setAccountName(string $accountName): self
     {
         $this->accountName = $accountName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBankBranch()
+    public function getBankBranch(): string
     {
         return $this->bankBranch;
     }
 
-    /**
-     * @return BankAccount
-     */
-    public function setBankBranch(mixed $bankBranch)
+    public function setBankBranch(string $bankBranch): self
     {
         $this->bankBranch = $bankBranch;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBankName()
+    public function getBankName(): string
     {
         return $this->bankName;
     }
 
-    /**
-     * @return BankAccount
-     */
-    public function setBankName(mixed $bankName)
+    public function setBankName(string $bankName): self
     {
         $this->bankName = $bankName;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLabel()
+    public function getLabel(): string
     {
         return $this->label;
     }
 
-    /**
-     * @return BankAccount
-     */
-    public function setLabel(mixed $label)
+    public function setLabel(string $label): self
     {
         $this->label = $label;
 

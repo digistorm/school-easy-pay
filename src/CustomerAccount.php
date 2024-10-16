@@ -19,47 +19,33 @@ class CustomerAccount extends Base
         'creditCardProxy',
     ];
 
-    protected $customerReference;
+    protected string $customerReference;
 
-    protected $creditCardProxy;
+    protected Card $creditCardProxy;
 
-    /**
-     * @return mixed
-     */
-    public function getCustomerReference()
+    public function getCustomerReference(): string
     {
         return $this->customerReference;
     }
 
-    /**
-     * @param mixed $customerReference
-     * @return CustomerAccount
-     */
-    public function setCustomerReference(string $customerReference): CustomerAccount
+    public function setCustomerReference(string $customerReference): self
     {
         $this->customerReference = $customerReference;
 
         return $this;
     }
 
-    protected function getEndpoint()
+    protected function getEndpoint(): string
     {
         return '/customers/' . $this->customerReference . '/account';
     }
 
-    /**
-     * @return Card
-     */
     public function getCreditCardProxy(): Card
     {
         return $this->creditCardProxy;
     }
 
-    /**
-     * @param Card $card
-     * @return CustomerAccount
-     */
-    public function setCreditCardProxy(Card $card): CustomerAccount
+    public function setCreditCardProxy(Card $card): self
     {
         $this->creditCardProxy = $card;
 
