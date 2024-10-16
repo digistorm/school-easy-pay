@@ -14,12 +14,11 @@ abstract class Base implements JsonSerializable
 {
     use JsonSerialize;
 
-    protected Client $client;
     protected array $headers;
 
     abstract protected function getEndpoint(): string;
 
-    public function __construct(protected Config $config, ?Client $client = null)
+    public function __construct(protected Config $config, protected ?Client $client = null)
     {
         $this->headers = [
             'Api-Key' => $this->config->getApiKey(),
