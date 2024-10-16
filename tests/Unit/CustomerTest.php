@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Unit;
 
 use Carbon\Carbon;
+use Exception;
 use Digistorm\SchoolEasyPay\Card;
 use Digistorm\SchoolEasyPay\Config;
 use Digistorm\SchoolEasyPay\Customer;
@@ -51,40 +52,38 @@ class CustomerTest extends TestCase
         $this->assertEquals($customerReference, $customer->getCustomerReference());
     }
 
-    /**
-     * @throws SchoolEasyPayException
-     */
     public function testDateOfBirthHandling()
     {
         $customer = new Customer($this->config);
         $dateString = '2000-01-01';
-        $customer->setDateOfBirth($dateString);
+        try {
+            $customer->setDateOfBirth($dateString);
+        } catch (Exception $e) {}
 
         $expected = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d\T00:00:00.000\Z');
         $this->assertEquals($expected, $customer->getDateOfBirth());
     }
 
-    /**
-     * @throws SchoolEasyPayException
-     */
     public function testPaymentStartDateHandling()
     {
         $customer = new Customer($this->config);
         $dateString = '2024-10-15';
-        $customer->setPaymentStartDate($dateString);
+        try {
+            $customer->setPaymentStartDate($dateString);
+        } catch (Exception $e) {}
 
         $expected = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d\T00:00:00.000\Z');
         $this->assertEquals($expected, $customer->getPaymentStartDate());
     }
 
-    /**
-     * @throws SchoolEasyPayException
-     */
     public function testPaymentEndDateHandling()
     {
         $customer = new Customer($this->config);
         $dateString = '2025-10-15';
-        $customer->setPaymentEndDate($dateString);
+        try {
+            $customer->setPaymentEndDate($dateString);
+        } catch (Exception $e) {}
+
 
         $expected = Carbon::createFromFormat('Y-m-d', $dateString)->format('Y-m-d\T00:00:00.000\Z');
         $this->assertEquals($expected, $customer->getPaymentEndDate());
