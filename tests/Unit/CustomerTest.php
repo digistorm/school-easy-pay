@@ -17,6 +17,8 @@ use PHPUnit\Framework\TestCase;
 
 class CustomerTest extends TestCase
 {
+    private Config $config;
+
     public function setUp(): void
     {
         parent::setUp();
