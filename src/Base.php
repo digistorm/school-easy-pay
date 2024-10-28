@@ -18,7 +18,7 @@ abstract class Base implements JsonSerializable
 
     abstract protected function getEndpoint(): string;
 
-    public function __construct(protected Config $config, protected ?Client $client = null)
+    public function __construct(protected Config $config, protected ?ClientInterface $client = null)
     {
         $this->headers = [
             'Api-Key' => $this->config->getApiKey(),
